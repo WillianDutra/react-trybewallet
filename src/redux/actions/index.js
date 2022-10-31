@@ -8,10 +8,18 @@ export const userLogin = (email) => ({
   payload: email,
 });
 
-// const requestStarted = () => ({
-//   type: REQUEST_API,
-// });
-
-export const fetchCoins = () => ({
-  type: RESPONSE_API,
+const requestStarted = () => ({
+  type: REQUEST_API,
 });
+
+const requestFinished = (coins) => ({
+  type: RESPONSE_API,
+  payload: coins,
+});
+
+export const fetchCurrencies = () => (dispatch) => {
+  dispatch(requestStarted());
+  return fetch('https://economia.awesomeapi.com.br/json/all')
+    .then((response) => response.json())
+    .then((coins) => dispatch(requestFinished(coins)));
+};

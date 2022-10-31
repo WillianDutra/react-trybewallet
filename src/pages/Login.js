@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { userLogin } from '../redux/actions';
+import { userLogin, fetchCurrencies } from '../redux/actions';
 
 class Login extends React.Component {
   constructor() {
@@ -12,6 +12,11 @@ class Login extends React.Component {
       password: '',
       isDisabled: true,
     };
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchCurrencies());
   }
 
   enableButton = () => {
