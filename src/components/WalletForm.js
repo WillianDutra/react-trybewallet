@@ -1,21 +1,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { expenseCreate } from '../redux/actions';
 
 class WalletForm extends Component {
   constructor() {
     super();
 
     this.state = {
-      // id: '',
+      id: 0,
       value: '',
       currency: 'USD',
       method: 'Dinheiro',
       tag: 'Alimentação',
       description: '',
-      // exchangeRates: '',
+      exchangeRates: '',
     };
   }
+
+  getId = () => {
+    const { expenses } = this.props;
+    const id = expenses.length;
+    this.setState({ id });
+  };
+
+  getCurrencies = async () => {
+    this.getId();
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const data = await response.json();
+    this.setState(({ exchangeRates: data }), this.submitExpense);
+  };
+
+  submitExpense = () => {
+    const { dispatch } = this.props;
+    dispatch(expenseCreate(this.state));
+    this.setState({
+      id: 0,
+      value: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+      description: '',
+      exchangeRates: '',
+    });
+  };
 
   handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
@@ -31,6 +59,7 @@ class WalletForm extends Component {
           <input
             name="value"
             data-testid="value-input"
+            type="number"
             value={ value }
             onChange={ this.handleChange }
           />
@@ -77,7 +106,8 @@ class WalletForm extends Component {
           <option>Saúde</option>
         </select>
         <button
-          type="submit"
+          type="button"
+          onClick={ this.getCurrencies }
         >
           Adicionar despesa
         </button>
@@ -86,14 +116,15 @@ class WalletForm extends Component {
   }
 }
 
-const mapStateToProps = ({ wallet: { currencies } }) => ({
+const mapStateToProps = ({ wallet: { currencies, expenses } }) => ({
   currencies,
-  // expenses,
+  expenses,
 });
 
 WalletForm.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // expenses: PropTypes.arrayOf(PropTypes.obj).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.obj).isRequired,
 };
 
 export default connect(mapStateToProps)(WalletForm);

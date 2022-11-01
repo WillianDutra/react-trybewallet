@@ -1,11 +1,12 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
-import { REQUEST_API, RESPONSE_API } from '../actions';
+import { REQUEST_API, RESPONSE_API, EXPENSE_CREATE, TOTAL_EXPENSE } from '../actions';
 
 const INITIAL_STATE = {
-  currencies: [], // array de string
-  expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
-  editor: false, // valor booleano que indica de uma despesa está sendo editada
-  idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
+  currencies: [],
+  expenses: [],
+  editor: false,
+  idToEdit: 0,
+  totalExpense: 0,
 };
 
 const wallet = (state = INITIAL_STATE, { type, payload }) => {
@@ -16,6 +17,16 @@ const wallet = (state = INITIAL_STATE, { type, payload }) => {
     return {
       ...state,
       currencies: (Object.keys(payload)).filter((ele) => ele !== 'USDT'),
+    };
+  case EXPENSE_CREATE:
+    return {
+      ...state,
+      expenses: [...state.expenses, payload],
+    };
+  case TOTAL_EXPENSE:
+    return {
+      ...state,
+      totalExpense: payload,
     };
   default:
     return state;
