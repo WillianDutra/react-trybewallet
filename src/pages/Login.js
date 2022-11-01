@@ -21,7 +21,9 @@ class Login extends React.Component {
 
   enableButton = () => {
     const { email, password } = this.state;
-    const emailValidation = email.includes('@') && email.includes('.com');
+    // const emailValidation = email.includes('@') && email.includes('.com');
+    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{3}$/g;
+    const emailValidation = emailRegex.test(email);
 
     const minLength = 6;
     const passwordValidation = password.length >= minLength;
