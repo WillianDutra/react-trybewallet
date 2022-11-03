@@ -25,7 +25,9 @@ class Table extends Component {
         return Number(sum.toFixed(2));
       });
       const total = allExpenses.reduce((acc, curr) => acc + curr);
-      dispatch((totalExpense(total)));
+      dispatch(totalExpense(total));
+    } else {
+      dispatch(totalExpense(0));
     }
   };
     // ------------------------- //
