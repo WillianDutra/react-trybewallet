@@ -59,7 +59,7 @@ describe('Página Wallet', () => {
     // userEvent.click(screen.getByRole('option', { name: 'CAD' }));
     // expect(screen.getByRole('option', { name: 'CAD' }).selected).toBe(true);
 
-    // userEvent.click(screen.getByRole('button'));
+    userEvent.click(screen.getByRole('button'));
     // expect(screen.getByTestId('value-input').value).toBe('');
     // expect(screen.getByTestId('description-input').value).toBe('');
   });
