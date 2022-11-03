@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
-import { renderWithRouter } from './helpers/renderWith';
+import { renderWithRouter, renderWithRouterAndRedux } from './helpers/renderWith';
 import store from '../redux/store';
 import App from '../App';
 
@@ -25,10 +25,15 @@ describe('Página Login', () => {
     expect(loginButton).toBeDefined();
   });
   it('Validação de email e senha', () => {
-    renderWithRouter(
-      <Provider store={ store }>
-        <App />
-      </Provider>,
+    // renderWithRouter(
+    //   <Provider store={ store }>
+    //     <App />
+    //   </Provider>,
+    // );
+
+    renderWithRouterAndRedux(
+      <App />,
+      { initialEntries: ['/'] },
     );
 
     expect(screen.getByRole('button')).toBeDisabled();
@@ -42,5 +47,8 @@ describe('Página Login', () => {
     expect(passwordInput.value).toBe('teste123');
 
     expect(screen.getByRole('button')).not.toBeDisabled();
+    userEvent.click(screen.getByRole('button'));
+
+    expect(screen.getByText('Email: willian@betrybe.com')).toBeDefined();
   });
 });
