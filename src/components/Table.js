@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { totalExpense } from '../redux/actions';
+import { totalExpense, removeExpense } from '../redux/actions';
 
 class Table extends Component {
   componentDidUpdate() {
     this.setTotalExpense();
   }
+
+  // removeExpense = () => {
+  //   const { dispatch, expenses: { id } } = this.props;
+  //   console.log(expenses);
+  //   dispatch(removeExpense(id));
+  // };
 
   // --Faz a soma dos gastos-- //
   setTotalExpense = () => {
@@ -25,7 +31,7 @@ class Table extends Component {
     // ------------------------- //
 
   render() {
-    const { expenses } = this.props;
+    const { expenses, dispatch } = this.props;
     return (
       <table>
         <thead>
@@ -53,7 +59,16 @@ class Table extends Component {
                 <td>{Number(exchangeRates[currency].ask).toFixed(2)}</td>
                 <td>{(value * exchangeRates[currency].ask).toFixed(2)}</td>
                 <td>Real Brasileiro</td>
-                <td>{}</td>
+                <td>
+                  <button
+                    type="button"
+                    data-testid="delete-btn"
+                    onClick={ () => dispatch(removeExpense(id)) }
+                  >
+                    Excluir
+                  </button>
+
+                </td>
               </tr>
             ))}
         </tbody>

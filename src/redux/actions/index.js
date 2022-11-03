@@ -4,6 +4,7 @@ export const EXPENSE_CREATE = 'EXPENSE_CREATE';
 export const REQUEST_API = 'REQUEST_API';
 export const RESPONSE_API = 'RESPONSE_API';
 export const TOTAL_EXPENSE = 'TOTAL_EXPENSE';
+export const REMOVE_EXPENSE = 'REMOVE_EXPENSE';
 
 export const userLogin = (email) => ({
   type: USER_LOGIN,
@@ -19,6 +20,13 @@ export const totalExpense = (total) => ({
   type: TOTAL_EXPENSE,
   payload: total,
 });
+
+export const removeExpense = (id) => ({
+  type: REMOVE_EXPENSE,
+  payload: id,
+});
+
+// Request API
 
 const requestStarted = () => ({
   type: REQUEST_API,
