@@ -5,8 +5,12 @@ import userEvent from '@testing-library/user-event';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 // import store from '../redux/store';
 import App from '../App';
+// import mockData from './helpers/mockData';
 
 describe('Página Wallet', () => {
+  const inputId = 'value-input';
+  const descriptionId = 'description-input';
+
   it('A tela de "Wallet" È renderizada corretamente', () => {
     renderWithRouterAndRedux(
       <App />,
@@ -28,36 +32,36 @@ describe('Página Wallet', () => {
       { initialEntries: ['/carteira'] },
     );
 
-    expect(screen.getByTestId('value-input')).toBeDefined();
-    expect(screen.getByTestId('description-input')).toBeDefined();
+    expect(screen.getByTestId(inputId)).toBeDefined();
+    expect(screen.getByTestId(descriptionId)).toBeDefined();
     expect(screen.getByTestId('currency-input')).toBeDefined();
     expect(screen.getByTestId('method-input')).toBeDefined();
     expect(screen.getByTestId('tag-input')).toBeDefined();
     expect(screen.getByRole('button', { name: 'Adicionar despesa' })).toBeDefined();
   });
 
-  it('Os valores são atualizados ao clicar em Adicionar despesa', () => {
+  it('Os valores são atualizados ao clicar em Adicionar despesa', async () => {
     renderWithRouterAndRedux(
       <App />,
       { initialEntries: ['/carteira'] },
     );
 
-    const valueInput = screen.getByTestId('value-input');
+    const valueInput = screen.getByTestId(inputId);
     expect(valueInput.value).toBe('');
     userEvent.type(valueInput, '12');
     expect(valueInput.value).toBe('12');
 
-    const descriptionInput = screen.getByTestId('description-input');
+    const descriptionInput = screen.getByTestId(descriptionId);
     expect(descriptionInput.value).toBe('');
     userEvent.type(descriptionInput, 'Hot Dog');
     expect(descriptionInput.value).toBe('Hot Dog');
 
-    // const selectCurrency = screen.getByTestId('currency-input');
-    // userEvent.click(screen.getByRole('option', { name: 'CAD' }));
-    // expect(screen.getByRole('option', { name: 'CAD' }).selected).toBe(true);
+    expect(screen.getByTestId('currency-input')).toBeDefined();
+    expect(screen.findByRole('option', { name: 'USD' })).toBeDefined();
+    expect(screen.findByRole('option', { name: 'CAD' })).toBeDefined();
 
-    // userEvent.click(screen.getByRole('button', { name: /adicionar despesa/i }));
-    // expect(screen.getByTestId('value-input').value).toBe('');
-    // expect(screen.getByTestId('description-input').value).toBe('');
+    userEvent.click(screen.getByRole('button', { name: /adicionar despesa/i }));
+    expect(screen.findByTestId(inputId).value).toBe(undefined);
+    expect(screen.findByTestId(descriptionId).value).toBe(undefined);
   });
 });

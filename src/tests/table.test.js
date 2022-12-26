@@ -24,7 +24,7 @@ describe('Tabela da página Wallet', () => {
     expect(screen.getByText('Editar/Excluir')).toBeDefined();
   });
 
-  it('Tabela atualiza após adicionar despesa', () => {
+  it('Tabela atualiza após adicionar despesa', async () => {
     renderWithRouterAndRedux(
       <App />,
       { initialEntries: ['/carteira'] },
@@ -33,6 +33,20 @@ describe('Tabela da página Wallet', () => {
     const createExpense = screen.getByRole('button', { name: /adicionar despesa/i });
     userEvent.click(createExpense);
 
-    // expect(screen.getByRole('button', { name: /excluir/i })).toBeDefined();
+    const tag = screen.findByRole('th', { name: 'Alimentação' });
+    const method = screen.findByRole('th', { name: 'Dinheiro' });
+    const value = screen.findByRole('th', { name: 0.00 });
+    const currency = screen.findByRole('th', { name: 'Dólar Americano/Real Brasileiro' });
+    const convert = screen.findByRole('th', { name: 'Real Brasileiro' });
+    const deleteExpense = screen.findByRole('button', { name: 'Excluir' });
+
+    expect(tag).toBeDefined();
+    expect(method).toBeDefined();
+    expect(value).toBeDefined();
+    expect(currency).toBeDefined();
+    expect(convert).toBeDefined();
+    expect(deleteExpense).toBeDefined();
+
+    userEvent.click(await deleteExpense);
   });
 });
