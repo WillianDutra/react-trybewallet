@@ -2,14 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import logo from '../logo.svg';
+import emailIcon from '../styles/emailIcon.svg';
+import despesasIcom from '../styles/despesasIcon.svg';
+
 class Header extends Component {
   render() {
     const { email, totalExpense } = this.props;
     return (
       <div id="header-infos">
-        <p data-testid="email-field">{`Email: ${email}`}</p>
-        <p data-testid="total-field">{totalExpense.toFixed(2)}</p>
-        <p data-testid="header-currency-field">BRL</p>
+        <img src={ logo } alt="trybewallet logo" />
+        <p data-testid="total-field" className="despesas">
+          <img src={ despesasIcom } alt="despesas icon" />
+          <strong>Total das despesas:</strong>
+          {`${totalExpense.toFixed(2)} BRL`}
+        </p>
+        <p data-testid="email-field" className="email">
+          <img src={ emailIcon } alt="email icon" />
+          {email}
+        </p>
       </div>
     );
   }

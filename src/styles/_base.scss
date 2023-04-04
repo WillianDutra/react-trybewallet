@@ -6,13 +6,13 @@ body {
 }
 
 input {
-  border-radius: 6px;
-  padding: 12px;
-  width: 360px;
   border: 2px solid $dark-blue;
-  margin: 8px 0;
+  border-radius: 6px;
   color: $dark-blue;
   font-weight: bold;
+  margin: 8px 0;
+  padding: 12px;
+  width: 360px;
 }
 
 input:focus {
@@ -20,21 +20,21 @@ input:focus {
 }
 
 ::placeholder {
-  opacity: 0.6;
   color: $dark-blue;
+  opacity: 0.6;
 }
 
 button {
-  width: 360px;
-  padding: 12px;
-  margin: 10px;
   background-color: $dark-blue;
-  color: $light-white;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 14px;
-  border-radius: 6px;
   border: none;
+  border-radius: 6px;
+  color: $light-white;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 10px;
+  padding: 12px;
+  text-transform: uppercase;
+  width: 360px;
 }
 
 button:disabled {
