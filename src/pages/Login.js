@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { userLogin, fetchCurrencies } from '../redux/actions';
+import logo from '../logo.svg';
 
 class Login extends React.Component {
   constructor() {
@@ -49,37 +50,40 @@ class Login extends React.Component {
   render() {
     const { email, isDisabled, password } = this.state;
     return (
-      <div>
-        <label htmlFor="email-input">
-          Email
-          <input
-            id="email-input"
-            name="email"
-            type="text"
-            data-testid="email-input"
-            value={ email }
-            onChange={ this.handleChange }
-          />
-        </label>
-        <label htmlFor="password-input">
-          Password
-          <input
-            id="password-input"
-            name="password"
-            type="password"
-            data-testid="password-input"
-            value={ password }
-            onChange={ this.handleChange }
-          />
-        </label>
-        <button
-          type="button"
-          disabled={ isDisabled }
-          onClick={ this.handleSubmit }
-        >
-          Entrar
-        </button>
-      </div>
+      <main className="login-page">
+        <div className="card">
+          <img src={ logo } alt="trybewallet logo" />
+          <label htmlFor="email-input">
+            <input
+              id="email-input"
+              name="email"
+              type="text"
+              data-testid="email-input"
+              placeholder="E-mail"
+              value={ email }
+              onChange={ this.handleChange }
+            />
+          </label>
+          <label htmlFor="password-input">
+            <input
+              id="password-input"
+              name="password"
+              type="password"
+              data-testid="password-input"
+              placeholder="Password"
+              value={ password }
+              onChange={ this.handleChange }
+            />
+          </label>
+          <button
+            type="button"
+            disabled={ isDisabled }
+            onClick={ this.handleSubmit }
+          >
+            Entrar
+          </button>
+        </div>
+      </main>
     );
   }
 }

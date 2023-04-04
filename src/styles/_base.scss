@@ -1,0 +1,42 @@
+body {
+  background-color: $light-green;
+  font-family: $font-satck;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  border: 2px solid $dark-blue;
+  border-radius: 6px;
+  color: $dark-blue;
+  font-weight: bold;
+  margin: 8px 0;
+  padding: 12px;
+  width: 360px;
+}
+
+input:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: $dark-blue;
+  opacity: 0.6;
+}
+
+button {
+  background-color: $dark-blue;
+  border: none;
+  border-radius: 6px;
+  color: $light-white;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 10px;
+  padding: 12px;
+  text-transform: uppercase;
+  width: 360px;
+}
+
+button:disabled {
+  opacity: 0.7;
+}
