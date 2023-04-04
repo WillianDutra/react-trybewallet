@@ -1,0 +1,22 @@
+.login-page {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+
+  .card {
+    align-items: center;
+    background-color: $light-white;
+    flex-direction: column;
+    display: flex;
+    height: 360px;
+    justify-content: center;
+    width: 530px;
+    border-radius: 8px;
+    box-shadow: $simple-shadow;
+
+    img {
+      margin-bottom: 20px;
+    }
+  }
+}
