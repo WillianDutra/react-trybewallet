@@ -8,12 +8,6 @@ class Table extends Component {
     this.setTotalExpense();
   }
 
-  // removeExpense = () => {
-  //   const { dispatch, expenses: { id } } = this.props;
-  //   console.log(expenses);
-  //   dispatch(removeExpense(id));
-  // };
-
   // --Faz a soma dos gastos-- //
   setTotalExpense = () => {
     const { expenses, dispatch } = this.props;
@@ -30,12 +24,11 @@ class Table extends Component {
       dispatch(totalExpense(0));
     }
   };
-    // ------------------------- //
 
   render() {
     const { expenses, dispatch } = this.props;
     return (
-      <table>
+      <table className="table-content">
         <thead>
           <tr>
             <th>Descrição</th>
@@ -63,6 +56,7 @@ class Table extends Component {
                 <td>Real Brasileiro</td>
                 <td>
                   <button
+                    className="delete-btn"
                     type="button"
                     data-testid="delete-btn"
                     onClick={ () => dispatch(removeExpense(id)) }
@@ -86,7 +80,6 @@ const mapStateToProps = ({ wallet: { expenses } }) => ({
 
 Table.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  // currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   expenses: PropTypes.arrayOf(PropTypes.obj).isRequired,
 };
 
