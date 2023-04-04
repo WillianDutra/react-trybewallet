@@ -53,9 +53,9 @@ class WalletForm extends Component {
     const { value, description, method, currency, tag } = this.state;
     const { currencies } = this.props;
     return (
-      <div>
-        <label htmlFor="value">
-          Valor:
+      <div className="wallet-form">
+        <label htmlFor="value" className="value">
+          Valor
           <input
             name="value"
             data-testid="value-input"
@@ -64,8 +64,8 @@ class WalletForm extends Component {
             onChange={ this.handleChange }
           />
         </label>
-        <label htmlFor="description">
-          Descrição:
+        <label htmlFor="description" className="description">
+          Descrição da despesa
           <input
             name="description"
             data-testid="description-input"
@@ -73,44 +73,55 @@ class WalletForm extends Component {
             onChange={ this.handleChange }
           />
         </label>
-        <select
-          data-testid="currency-input"
-          name="currency"
-          onChange={ this.handleChange }
-          value={ currency }
-        >
-          { currencies.map((ele, i) => (
-            <option value={ ele } key={ i } name={ ele }>{ele}</option>
-          ))}
-        </select>
-        <select
-          data-testid="method-input"
-          name="method"
-          onChange={ this.handleChange }
-          value={ method }
-        >
-          <option>Dinheiro</option>
-          <option>Cartão de crédito</option>
-          <option>Cartão de débito</option>
-        </select>
-        <select
-          data-testid="tag-input"
-          name="tag"
-          onChange={ this.handleChange }
-          value={ tag }
-        >
-          <option>Alimentação</option>
-          <option>Lazer</option>
-          <option>Trabalho</option>
-          <option>Transporte</option>
-          <option>Saúde</option>
-        </select>
-        <button
-          type="button"
-          onClick={ this.getCurrencies }
-        >
-          Adicionar despesa
-        </button>
+        <div className="select-container">
+          <p>Moeda</p>
+          <select
+            data-testid="currency-input"
+            name="currency"
+            onChange={ this.handleChange }
+            value={ currency }
+          >
+            { currencies.map((ele, i) => (
+              <option value={ ele } key={ i } name={ ele }>{ele}</option>
+            ))}
+          </select>
+        </div>
+        <div className="select-container">
+          <p>Método de pagamento</p>
+          <select
+            data-testid="method-input"
+            name="method"
+            onChange={ this.handleChange }
+            value={ method }
+          >
+            <option>Dinheiro</option>
+            <option>Cartão de crédito</option>
+            <option>Cartão de débito</option>
+          </select>
+        </div>
+        <div className="select-container">
+          <p>Categoria da despesa</p>
+          <select
+            data-testid="tag-input"
+            name="tag"
+            onChange={ this.handleChange }
+            value={ tag }
+          >
+            <option>Alimentação</option>
+            <option>Lazer</option>
+            <option>Trabalho</option>
+            <option>Transporte</option>
+            <option>Saúde</option>
+          </select>
+        </div>
+        <div className="container-despesa">
+          <button
+            type="button"
+            onClick={ this.getCurrencies }
+          >
+            Adicionar despesa
+          </button>
+        </div>
       </div>
     );
   }
