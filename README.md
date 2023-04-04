@@ -1,13 +1,28 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+## Trybewallet
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+Este projeto visa fixar os aprendizados sobre Redux, React e Sasss.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+A aplicação é uma simples carteira, onde você pode cadastrar suas despesas e monitorar seus gastos.
+## Apredizados com este projeto
+
+- Redux
+- React
+- Javascript
+- Sass
+- Css
+
+
+## Instalação
+
+Caso queira instalar o projeto e dar uma olhada mais de perto.
+
+```bash
+  # Clonando o projeto
+  git clone git@github.com:WillianDutra/react-trybewallet.git
+  # Entrando na pasta
+  cd trybewallet
+  # Instalando as dependências
+  npm install
+  # Rodando a aplicacao
+  npm run start
+```
