@@ -3,7 +3,7 @@
 Este projeto visa fixar os aprendizados sobre Redux, React e Sasss.
 
 A aplicação é uma simples carteira, onde você pode cadastrar suas despesas e monitorar seus gastos.
-## Apredizados com este projeto
+## Aprendizados com este projeto
 
 - Redux
 - React
